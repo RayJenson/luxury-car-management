@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import com.sun.javafx.scene.control.IntegerField?>
+<?import com.sun.javafx.scene.control.DoubleField?>
+<DialogPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.xzlei.luxurycarjavafx.controller.OperationProductController"
+            fx:id="dialog">
+    <content>
+        <GridPane hgap="10" vgap="10" prefWidth="600" style="-fx-padding: 10;">
+            <!-- 第一列 -->
+            <Label text="产品名称:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="productNameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="产品品牌:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="input" prefWidth="200.0" prefHeight="30.0" promptText="请选择商品品牌" fx:id="typeComboBox">
+                <items>
+                </items>
+            </ComboBox>
+
+            <Label text="颜色:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="colorField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="价格:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+
+            <!-- 第二列 -->
+            <Label text="采购价格:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <TextField fx:id="purchasePriceField" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+            <Label text="原始库存:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <TextField fx:id="originalStockField" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+            <Label text="最小库存:" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <TextField fx:id="minStockField" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+
+            <Label text="最大库存:" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+            <TextField fx:id="maxStockField" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+
+                <Label text="产品描述:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <TextArea fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="3"
+                          prefRowCount="3" prefColumnCount="20"/>
+        </GridPane>
+
+
+    </content>
+</DialogPane>

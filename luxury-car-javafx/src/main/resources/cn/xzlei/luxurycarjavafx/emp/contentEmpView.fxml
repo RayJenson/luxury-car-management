@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import atlantafx.base.layout.InputGroup?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cn.xzlei.luxurycarjavafx.controller.EmpController">
+    <FlowPane style="-fx-padding: 10;" prefHeight="50" hgap="10" vgap="10" VBox.vgrow="ALWAYS">
+        <InputGroup styleClass="inputGroup">
+            <Label text="员工编号"/>
+            <TextField fx:id="empIdInput" promptText="请输入员工编号"/>
+        </InputGroup>
+        <InputGroup>
+            <Label text="员工姓名"/>
+            <TextField fx:id="nameInput" promptText="请输入员工姓名"/>
+        </InputGroup>
+        <InputGroup>
+            <Label text="员工部门"/>
+            <ComboBox fx:id="deptInput" promptText="请选择员工部门"/>
+        </InputGroup>
+
+        <Button text="查询" onAction="#queryEmp" styleClass="primaryButton">
+            <graphic>
+                <FontIcon fill="red" iconLiteral="fas-search"/>
+            </graphic>
+        </Button>
+        <Button text="重置"  onAction="#reset" styleClass="primaryButton" style="-fx-background-color: #71A2A9;">
+            <graphic>
+                <FontIcon fill="red" iconLiteral="fas-redo"/>
+            </graphic>
+        </Button>
+    </FlowPane>
+
+    <HBox alignment="CENTER_RIGHT">
+        <padding>
+            <Insets left="10" right="10" top="30"/>
+        </padding>
+        <Button text="添加" onAction="#openAddEmployeeDialog"  styleClass="primaryButton" style="-fx-background-color: #00bc00;">
+            <graphic>
+                <FontIcon fill="red" iconLiteral="fas-plus"/>
+            </graphic>
+        </Button>
+    </HBox>
+
+    <TableView fx:id="empTable" style="-fx-padding: 10;-fx-border-width: 0;-fx-border-color: none;" VBox.vgrow="ALWAYS">
+        <placeholder>
+            <Label text="未查询到数据"/>
+        </placeholder>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+
+        <columns>
+            <TableColumn text="操作" prefWidth="150" fx:id="actionColumn">
+                <!-- 添加一个空的cellValueFactory以避免操作列显示null -->
+                <cellValueFactory>
+                    <PropertyValueFactory property="" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+</VBox>

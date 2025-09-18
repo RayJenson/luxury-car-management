@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: car-manage
+    version: 1.0.0
+    profile: dev
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/luxury_car_sales_db?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jackson:
+    date-format: YYYY-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+
+sa-token:
+  token-name: token
+  active-timeout: 86400 # token有效期为24小时
+
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

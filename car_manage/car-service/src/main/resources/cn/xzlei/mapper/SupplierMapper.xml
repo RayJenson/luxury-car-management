@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xzlei.mapper.SupplierMapper">
+  <resultMap id="BaseResultMap" type="cn.xzlei.entity.Supplier">
+    <id column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+    <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    supplier_id, supplier_name, contact_name, contact_phone, address, account, email, 
+    update_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where supplier_id = #{supplierId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByParams" resultType="cn.xzlei.entity.Supplier">
+    select * from supplier
+    <where>
+      <if test="supplierName != null and supplierName != ''">
+        and supplier_name like concat('%',#{supplierName},'%')
+      </if>
+      <if test="supplierId != null">
+          and supplier_id = #{supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="address != null and address != '' ">
+        and address like concat('%',#{address},'%')
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from supplier
+    where supplier_id = #{supplierId,jdbcType=INTEGER}
+  </delete>
+    <delete id="batchDeleteById">
+      delete from supplier
+      where supplier_id in
+      <foreach item="item" collection="list" separator="," open="(" close=")" index="">
+        #{item}
+      </foreach>
+    </delete>
+    <insert id="insert" keyColumn="supplier_id" keyProperty="supplierId" parameterType="cn.xzlei.entity.Supplier" useGeneratedKeys="true">
+    insert into supplier (supplier_name, contact_name, contact_phone, 
+      address, account, email, 
+      update_time, create_time)
+    values (#{supplierName,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="supplier_id" keyProperty="supplierId" parameterType="cn.xzlei.entity.Supplier" useGeneratedKeys="true">
+    insert into supplier
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="supplierName != null">
+        supplier_name,
+      </if>
+      <if test="contactName != null">
+        contact_name,
+      </if>
+      <if test="contactPhone != null">
+        contact_phone,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="supplierName != null">
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xzlei.entity.Supplier">
+    update supplier
+    <set>
+      <if test="supplierName != null">
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where supplier_id = #{supplierId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xzlei.entity.Supplier">
+    update supplier
+    set supplier_name = #{supplierName,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where supplier_id = #{supplierId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xzlei.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="cn.xzlei.entity.Product">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="car_id" jdbcType="INTEGER" property="carId" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="original_quantity" jdbcType="INTEGER" property="originalQuantity" />
+    <result column="color" jdbcType="VARCHAR" property="color" />
+    <result column="purchase_price" jdbcType="DECIMAL" property="purchasePrice" />
+    <result column="min_quantity" jdbcType="INTEGER" property="minQuantity" />
+    <result column="max_quantity" jdbcType="INTEGER" property="maxQuantity" />
+    <result column="car_desc" jdbcType="VARCHAR" property="carDesc" />
+    <result column="model_preview_url" jdbcType="VARCHAR" property="modelPreviewUrl" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, product_name, car_id, price, original_quantity, color, purchase_price, min_quantity, 
+    max_quantity, car_desc, model_preview_url, update_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByCarTypeId" resultType="cn.xzlei.entity.Product">
+      select * from product where car_id = #{id}
+    </select>
+  <select id="selectByParams" resultType="cn.xzlei.entity.Product">
+    select * from product
+    <where>
+      <if test="id != null and id != '' ">
+        and id = #{id}
+      </if>
+      <if test="productName != null and productName != '' ">
+         and product_name like concat('%',#{productName},'%')
+      </if>
+      <if test="carId != null and carId != '' ">
+        and car_id = #{carId}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.xzlei.entity.Product" useGeneratedKeys="true">
+    insert into product (product_name, car_id, price, 
+      original_quantity, color, purchase_price, 
+      min_quantity, max_quantity, car_desc, 
+      model_preview_url, update_time, create_time
+      )
+    values (#{productName,jdbcType=VARCHAR}, #{carId,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{originalQuantity,jdbcType=INTEGER}, #{color,jdbcType=VARCHAR}, #{purchasePrice,jdbcType=DECIMAL}, 
+      #{minQuantity,jdbcType=INTEGER}, #{maxQuantity,jdbcType=INTEGER}, #{carDesc,jdbcType=VARCHAR}, 
+      #{modelPreviewUrl,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.xzlei.entity.Product" useGeneratedKeys="true">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="carId != null">
+        car_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="originalQuantity != null">
+        original_quantity,
+      </if>
+      <if test="color != null">
+        color,
+      </if>
+      <if test="purchasePrice != null">
+        purchase_price,
+      </if>
+      <if test="minQuantity != null">
+        min_quantity,
+      </if>
+      <if test="maxQuantity != null">
+        max_quantity,
+      </if>
+      <if test="carDesc != null">
+        car_desc,
+      </if>
+      <if test="modelPreviewUrl != null">
+        model_preview_url,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="carId != null">
+        #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="originalQuantity != null">
+        #{originalQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasePrice != null">
+        #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="minQuantity != null">
+        #{minQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxQuantity != null">
+        #{maxQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="carDesc != null">
+        #{carDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="modelPreviewUrl != null">
+        #{modelPreviewUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xzlei.entity.Product">
+    update product
+    <set>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="carId != null">
+        car_id = #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="originalQuantity != null">
+        original_quantity = #{originalQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="color != null">
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasePrice != null">
+        purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="minQuantity != null">
+        min_quantity = #{minQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxQuantity != null">
+        max_quantity = #{maxQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="carDesc != null">
+        car_desc = #{carDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="modelPreviewUrl != null">
+        model_preview_url = #{modelPreviewUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xzlei.entity.Product">
+    update product
+    set product_name = #{productName,jdbcType=VARCHAR},
+      car_id = #{carId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      original_quantity = #{originalQuantity,jdbcType=INTEGER},
+      color = #{color,jdbcType=VARCHAR},
+      purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      min_quantity = #{minQuantity,jdbcType=INTEGER},
+      max_quantity = #{maxQuantity,jdbcType=INTEGER},
+      car_desc = #{carDesc,jdbcType=VARCHAR},
+      model_preview_url = #{modelPreviewUrl,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

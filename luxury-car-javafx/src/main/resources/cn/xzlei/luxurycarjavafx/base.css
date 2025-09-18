@@ -1,0 +1,59 @@
+.navButton{
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+    -fx-padding: 15;
+    -fx-border-color: transparent;
+    -fx-outline: none;
+    -fx-text-fill: #6e6868;
+    -fx-cursor: hand;
+}
+.navButton .ikonli-font-icon{
+    -fx-icon-color: #6e6868;
+}
+.navButton:hover{
+    -fx-border-radius: 8;
+    -fx-background-color: transparent;
+}
+.navButton.action{
+    -fx-border-radius: 8;
+    -fx-background-color: #0080ff;
+    -fx-text-fill: white;
+}
+.navButton.action .ikonli-font-icon{
+    -fx-icon-color: white;
+}
+
+.inputGroup {
+    -fx-padding: 0 10 0 0;
+}
+
+.primaryButton {
+    -fx-background-color: #0080ff;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-border-radius: 5;
+    -fx-padding: 5 15 5 15;
+    -fx-font-size: 13;
+    -fx-alignment: center;
+}
+.primaryButton .ikonli-font-icon{
+    -fx-icon-color: white;
+}
+.dangerButton {
+    -fx-background-color: #C75450;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-border-radius: 5;
+    -fx-padding: 5 15 5 15;
+    -fx-font-size: 13;
+    -fx-alignment: center;
+}
+.dangerButton .ikonli-font-icon{
+    -fx-icon-color: white;
+}
+@media (prefers-color-scheme: dark) {
+    .root {
+        -fx-base: #2d2d2d;
+        -fx-background: #2d2d2d;
+    }
+}

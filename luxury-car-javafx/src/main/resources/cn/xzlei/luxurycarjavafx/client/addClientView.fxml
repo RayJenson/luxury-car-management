@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<DialogPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.xzlei.luxurycarjavafx.controller.AddClientController"
+            fx:id="dialog">
+    <content>
+        <GridPane hgap="10" vgap="10" prefWidth="600" style="-fx-padding: 10;">
+            <!-- 第一列 -->
+            <Label text="客户名称:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="customerNameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="联系电话:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="customerPhoneField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="邮箱地址:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="customerEmailField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="地址:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+            <!-- 第二列 -->
+            <Label text="性别:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <ComboBox styleClass="input" prefWidth="200.0" prefHeight="30.0" promptText="请选择性别：" fx:id="genderComboBox" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="男"/>
+                        <String fx:value="女"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <Label text="工作地点:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <TextField fx:id="workplaceField" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+            <Label text="昵称:" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <TextField fx:id="nickNameField" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+        </GridPane>
+    </content>
+</DialogPane>

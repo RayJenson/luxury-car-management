@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import com.dlsc.formsfx.view.controls.SimpleTextControl?>
+<?import javafx.scene.control.skin.SplitPaneSkin.Content?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="loginVBox" fx:controller="cn.xzlei.luxurycarjavafx.controller.LoginController">
+    <top>
+        <HBox fx:id="customTitleBar" style="-fx-background-color: rgba(255,255,255,0);-fx-padding: 5" prefHeight="30">
+            <HBox alignment="CENTER">
+                <Label text="豪车管理系统" style="-fx-text-fill: white"/>
+            </HBox>
+            <HBox HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT">
+                <Label text="×" styleClass="closeBtn" onMouseClicked="#closeWindow"/>
+            </HBox>
+        </HBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+
+            <Label text="员工登录" style="-fx-font-size: 25;-fx-text-fill: white;-fx-font-weight: bold"/>
+            <TextField promptText="请输入员工账号" styleClass="input" fx:id="account"/>
+            <PasswordField promptText="请输入密码" styleClass="input" fx:id="password"/>
+            <ComboBox styleClass="input" prefWidth="200.0" prefHeight="30.0" promptText="请选择部门" fx:id="deptComboBox">
+               <items>
+
+               </items>
+            </ComboBox>
+            <Button text="登 录" styleClass="loginBtn" fx:id="loginButton"/>
+
+        </VBox>
+    </center>
+</BorderPane>

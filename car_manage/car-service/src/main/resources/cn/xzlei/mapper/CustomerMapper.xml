@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xzlei.mapper.CustomerMapper">
+    <resultMap id="BaseResultMap" type="cn.xzlei.entity.Customer">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="customer_name" jdbcType="VARCHAR" property="customerName"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="purchase_history" jdbcType="VARCHAR" property="purchaseHistory"/>
+        <result column="gender" jdbcType="VARCHAR" property="gender"/>
+        <result column="workplace" jdbcType="VARCHAR" property="workplace"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        , customer_name, phone, email, purchase_history, gender, workplace, `password`,
+    avatar, nickname, update_time, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from customer
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectByParams" resultType="cn.xzlei.entity.Customer">
+        select * from customer
+        <where>
+            <if test="customerName != null and customerName != '' ">
+                and customer_name like concat('%',#{customerName},'%')
+            </if>
+            <if test="phone != null and phone != '' ">
+                and phone like concat('%',#{phone},'%')
+            </if>
+            <if test="gender != null and gender != '' ">
+                and gender like concat('%',#{gender},'%')
+            </if>
+        </where>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from customer
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="batchDeleteById">
+        delete from customer
+        where id in
+        <foreach item="id" collection="list" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.xzlei.entity.Customer"
+            useGeneratedKeys="true">
+        insert into customer (customer_name, phone, email,
+                              purchase_history, gender, workplace,
+                              `password`, avatar, nickname,
+                              update_time, create_time, address)
+        values (#{customerName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+                #{purchaseHistory,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{workplace,jdbcType=VARCHAR},
+                #{password,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.xzlei.entity.Customer"
+            useGeneratedKeys="true">
+        insert into customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="customerName != null">
+                customer_name,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="purchaseHistory != null">
+                purchase_history,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="workplace != null">
+                workplace,
+            </if>
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="customerName != null">
+                #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="purchaseHistory != null">
+                #{purchaseHistory,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="workplace != null">
+                #{workplace,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.xzlei.entity.Customer">
+        update customer
+        <set>
+            <if test="customerName != null">
+                customer_name = #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="purchaseHistory != null">
+                purchase_history = #{purchaseHistory,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="workplace != null">
+                workplace = #{workplace,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.xzlei.entity.Customer">
+        update customer
+        set customer_name    = #{customerName,jdbcType=VARCHAR},
+            phone            = #{phone,jdbcType=VARCHAR},
+            email            = #{email,jdbcType=VARCHAR},
+            purchase_history = #{purchaseHistory,jdbcType=VARCHAR},
+            gender           = #{gender,jdbcType=VARCHAR},
+            workplace        = #{workplace,jdbcType=VARCHAR},
+            `password`       = #{password,jdbcType=VARCHAR},
+            avatar           = #{avatar,jdbcType=VARCHAR},
+            nickname         = #{nickname,jdbcType=VARCHAR},
+            update_time      = #{updateTime,jdbcType=TIMESTAMP},
+            create_time      = #{createTime,jdbcType=TIMESTAMP},
+            address = #{address,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

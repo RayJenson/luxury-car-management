@@ -1,0 +1,45 @@
+package cn.xzlei.constant;
+
+public class MessageConstant {
+    public static final String LOGIN_SUCCESS = "登录成功";
+    public static final String LOGIN_FAIL = "登录失败";
+    public static final String EMP_NOT_EXIST = "员工不存在";
+    public static final String EMP_OR_PASSWORD_ERROR = "员工账号或密码错误";
+    public static final String USER_NOT_LOGIN = "用户未登录，请先登录";
+    public static final String ADD_EMP_SUCCESS = "添加员工成功";
+    public static final String ADD_EMP_ERROR = "添加员工失败，请检查您的参数是否正确";
+    public static final String UPDATE_EMP_ERROR = "更新员工信息失败，请检查您的参数是否正确";
+    public static final String UPDATE_EMP_SUCCESS = "更新员工信息成功！";
+    public static final String DELETE_EMP_ERROR = "批量删除员工失败";
+    public static final String DELETE_EMP_SUCCESS = "批量删除员工成功！";
+    public static final String SQL_ERROR = "你传入的参数异常，请检查参数是否正确";
+    public static final String ADD_SUPPLIER_SUCCESS = "添加供应商成功！";
+    public static final String UPDATE_SUPPLIER_SUCCESS = "更新供应商数据成功！";
+    public static final String DELETE_SUPPLIER_SUCCESS = "删除供应商成功！";
+    public static final String ADD_CUSTOMER_SUCCESS = "添加客户成功！";
+    public static final String UPDATE_CUSTOMER_SUCCESS = "更新客户信息成功！";
+    public static final String DELETE_CUSTOMER_SUCCESS = "删除客户成功！";
+    public static final String CUSTOMER_NOT_EXIST = "客户不存在";
+    public static final String EMP_NOT_RULE = "员工未设置权限，请联系管理员设置权限后重新登录";
+    public static final String NOT_PERMISSION_ADD_ADMIN = "你没有权限添加管理员账户";
+    public static final String NOT_PERMISSION_EDIT_ADMIN = "你没有权限编辑管理员账户";
+    public static final String NOT_SET_EMP_ROLE = "请传递员工角色";
+    public static final String NOT_PERMISSION_DELETE_ADMIN = "你没有权限删除管理员账户";
+    public static final String SUPER_ADMIN_NOT_ALLOWED_DELETE = "超管账号禁止删除";
+    public static final String ADD_CAR_TYPE_SUCCESS = "添加汽车类型成功";
+    public static final String UPDATE_CAR_TYPE_SUCCESS = "更新汽车类型成功!";
+    public static final String NOT_DELETE_CAR_TYPE = "不能删除该汽车类型，该类型下有对应的商品，请先删除商品后再试";
+    public static final String DELETE_CAR_TYPE_SUCCESS = "删除汽车类型成功！";
+    public static final String ADD_PRODUCT_SUCCESS = "添加商品信息成功！";
+    public static final String UPDATE_PRODUCT_SUCCESS = "更新商品信息成功！";
+    public static final String DELETE_PRODUCT_SUCCESS = "删除商品成功！";
+    public static final String ADD_PURCHASE_ORDER_SUCCESS = "添加进货订单成功";
+    public static final String UPDATE_PURCHASE_ORDER_SUCCESS = "更新订货信息成功";
+    public static final String DELETE_PURCHASE_ORDER_SUCCESS = "删除订货信息成功";
+    public static final String NOT_PERMISSION = "你没有足够的权限操作！";
+    public static final String ADD_SALES_RECORD_SUCCESS = "添加销售记录成功！";
+    public static final String UPDATE_SALES_RECORD_SUCCESS = "更新销售记录成功!";
+    public static final String DELETE_SALES_RECORD_SUCCESS = "删除销售记录成功！";
+    public static final String NOT_PERMISSION_RESET_ADMIN_PWD = "你没有权限重置管理员账户密码";
+    public static final String RESET_EMP_PWD_SUCCESS = "重置员工密码成功";
+}

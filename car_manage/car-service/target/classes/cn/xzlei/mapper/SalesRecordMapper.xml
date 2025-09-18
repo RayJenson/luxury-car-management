@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xzlei.mapper.SalesRecordMapper">
+  <resultMap id="BaseResultMap" type="cn.xzlei.entity.SalesRecord">
+    <id column="sales_id" jdbcType="INTEGER" property="salesId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="emp_id" jdbcType="INTEGER" property="empId" />
+    <result column="sale_date" jdbcType="DATE" property="saleDate" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="pay_method" jdbcType="VARCHAR" property="payMethod" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="cur_amount" jdbcType="DECIMAL" property="curAmount" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sales_id, customer_id, emp_id, sale_date, total_amount, pay_method, `status`, address, 
+    cur_amount, note, update_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sales_record
+    where sales_id = #{salesId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultType="cn.xzlei.entity.SalesRecord">
+    select
+    <include refid="Base_Column_List" />
+    from sales_record
+  </select>
+  <select id="selectAllByIsSales" resultType="cn.xzlei.entity.SalesRecord">
+    select
+    <include refid="Base_Column_List" />
+    from sales_record
+    where `status` = '已完成'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sales_record
+    where sales_id = #{salesId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="sales_id" keyProperty="salesId" parameterType="cn.xzlei.entity.SalesRecord" useGeneratedKeys="true">
+    insert into sales_record (customer_id, emp_id, sale_date, 
+      total_amount, pay_method, `status`, 
+      address, cur_amount, note, 
+      update_time, create_time)
+    values (#{customerId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, #{saleDate,jdbcType=DATE}, 
+      #{totalAmount,jdbcType=DECIMAL}, #{payMethod,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{curAmount,jdbcType=DECIMAL}, #{note,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="sales_id" keyProperty="salesId" parameterType="cn.xzlei.entity.SalesRecord" useGeneratedKeys="true">
+    insert into sales_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="empId != null">
+        emp_id,
+      </if>
+      <if test="saleDate != null">
+        sale_date,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="payMethod != null">
+        pay_method,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="curAmount != null">
+        cur_amount,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="saleDate != null">
+        #{saleDate,jdbcType=DATE},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payMethod != null">
+        #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="curAmount != null">
+        #{curAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xzlei.entity.SalesRecord">
+    update sales_record
+    <set>
+      <if test="customerId != null and customerId != '' ">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null and empId != '' ">
+        emp_id = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="saleDate != null">
+        sale_date = #{saleDate,jdbcType=DATE},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payMethod != null">
+        pay_method = #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="curAmount != null">
+        cur_amount = #{curAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sales_id = #{salesId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xzlei.entity.SalesRecord">
+    update sales_record
+    set customer_id = #{customerId,jdbcType=INTEGER},
+      emp_id = #{empId,jdbcType=INTEGER},
+      sale_date = #{saleDate,jdbcType=DATE},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      pay_method = #{payMethod,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      cur_amount = #{curAmount,jdbcType=DECIMAL},
+      note = #{note,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where sales_id = #{salesId,jdbcType=INTEGER}
+  </update>
+</mapper>

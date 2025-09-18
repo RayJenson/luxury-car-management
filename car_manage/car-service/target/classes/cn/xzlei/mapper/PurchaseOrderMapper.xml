@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xzlei.mapper.PurchaseOrderMapper">
+  <resultMap id="BaseResultMap" type="cn.xzlei.entity.PurchaseOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+    <result column="order_quantity" jdbcType="INTEGER" property="orderQuantity" />
+    <result column="order_date" jdbcType="DATE" property="orderDate" />
+    <result column="pay_method" jdbcType="VARCHAR" property="payMethod" />
+    <result column="is_purchase" jdbcType="BOOLEAN" property="isPurchase" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,order_id, product_id, supplier_id, order_quantity, order_date, pay_method, is_purchase,
+    note, update_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultType="cn.xzlei.entity.PurchaseOrder">
+    select
+    <include refid="Base_Column_List" />
+    from purchase_order
+  </select>
+    <select id="selectAllByIsPurchase" resultType="cn.xzlei.entity.PurchaseOrder">
+      select
+    <include refid="Base_Column_List" />
+    from purchase_order
+    where is_purchase = 1
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from purchase_order
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="order_id" keyProperty="orderId" parameterType="cn.xzlei.entity.PurchaseOrder" useGeneratedKeys="true">
+    insert into purchase_order (product_id, supplier_id, order_quantity, 
+      order_date, pay_method, is_purchase, 
+      note, update_time, create_time,order_id
+      )
+    values (#{productId,jdbcType=INTEGER}, #{supplierId,jdbcType=INTEGER}, #{orderQuantity,jdbcType=INTEGER}, 
+      #{orderDate,jdbcType=DATE}, #{payMethod,jdbcType=VARCHAR}, #{isPurchase,jdbcType=BOOLEAN}, 
+      #{note,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},#{orderId}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="order_id" keyProperty="orderId" parameterType="cn.xzlei.entity.PurchaseOrder" useGeneratedKeys="true">
+    insert into purchase_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="orderQuantity != null">
+        order_quantity,
+      </if>
+      <if test="orderDate != null">
+        order_date,
+      </if>
+      <if test="payMethod != null">
+        pay_method,
+      </if>
+      <if test="isPurchase != null">
+        is_purchase,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="orderQuantity != null">
+        #{orderQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="payMethod != null">
+        #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="isPurchase != null">
+        #{isPurchase,jdbcType=BOOLEAN},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xzlei.entity.PurchaseOrder">
+    update purchase_order
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="orderQuantity != null">
+        order_quantity = #{orderQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="orderDate != null">
+        order_date = #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="payMethod != null">
+        pay_method = #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="isPurchase != null">
+        is_purchase = #{isPurchase,jdbcType=BOOLEAN},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xzlei.entity.PurchaseOrder">
+    update purchase_order
+    set product_id = #{productId,jdbcType=INTEGER},
+      supplier_id = #{supplierId,jdbcType=INTEGER},
+      order_quantity = #{orderQuantity,jdbcType=INTEGER},
+      order_date = #{orderDate,jdbcType=DATE},
+      pay_method = #{payMethod,jdbcType=VARCHAR},
+      is_purchase = #{isPurchase,jdbcType=BOOLEAN},
+      note = #{note,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>

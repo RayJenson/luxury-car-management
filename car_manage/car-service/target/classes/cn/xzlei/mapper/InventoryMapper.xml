@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xzlei.mapper.InventoryMapper">
+  <resultMap id="BaseResultMap" type="cn.xzlei.entity.Inventory">
+    <id column="inventory_id" jdbcType="INTEGER" property="inventoryId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="warehouse_name" jdbcType="VARCHAR" property="warehouseName" />
+    <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    inventory_id, product_id, quantity, warehouse_name, warehouse_id, update_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from inventory
+    where inventory_id = #{inventoryId,jdbcType=INTEGER}
+  </select>
+    <select id="stats" resultType="cn.xzlei.vo.InventoryStatsVO">
+      SELECT c.id as car_type_id, concat(c.type_name,'仓库') as car_type_name, count(p.car_id) as car_type_count FROM `product` p RIGHT JOIN car_type c on p.car_id=c.id GROUP BY c.id
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from inventory
+    where inventory_id = #{inventoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="inventory_id" keyProperty="inventoryId" parameterType="cn.xzlei.entity.Inventory" useGeneratedKeys="true">
+    insert into inventory (product_id, quantity, warehouse_name, 
+      warehouse_id, update_time, create_time
+      )
+    values (#{productId,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER}, #{warehouseName,jdbcType=VARCHAR}, 
+      #{warehouseId,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="inventory_id" keyProperty="inventoryId" parameterType="cn.xzlei.entity.Inventory" useGeneratedKeys="true">
+    insert into inventory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="warehouseName != null">
+        warehouse_name,
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseName != null">
+        #{warehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseId != null">
+        #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xzlei.entity.Inventory">
+    update inventory
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseName != null">
+        warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where inventory_id = #{inventoryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xzlei.entity.Inventory">
+    update inventory
+    set product_id = #{productId,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=INTEGER},
+      warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where inventory_id = #{inventoryId,jdbcType=INTEGER}
+  </update>
+</mapper>

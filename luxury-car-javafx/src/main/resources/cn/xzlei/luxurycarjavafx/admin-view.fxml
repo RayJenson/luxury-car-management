@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.image.ImageView?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.xzlei.luxurycarjavafx.controller.AdminController">
+    <top>
+        <HBox prefHeight="50" style="-fx-background-color: #336699;">
+            <HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" style="-fx-padding: 5">
+                <Label text="豪车管理系统" style="-fx-font-size: 24; -fx-text-fill: white; -fx-alignment: center;-fx-text-alignment:center" />
+                <Label text="v1.0" style="-fx-font-size: 16; -fx-text-fill: white; -fx-alignment: center;" alignment="BOTTOM_LEFT"/>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" style="-fx-padding: 0 10 0 0">
+                <ImageView style="-fx-background-color: #FFA500;-fx-border-radius: 100;-fx-border-width: 0" fx:id="userAvatar" fitHeight="35" fitWidth="35"/>
+                <Label fx:id="userNameText" text="用户名" style="-fx-font-size: 16; -fx-text-fill: white; -fx-alignment: center; -fx-padding: 0 20 0 5;" alignment="BOTTOM_LEFT"/>
+                <Button text="退出" onAction="#logout" style="-fx-background-color: #FFA500; -fx-font-size: 14;">
+                    <graphic>
+                        <FontIcon fill="white" iconLiteral="fas-sign-out-alt"/>
+                    </graphic>
+                </Button>
+            </HBox>
+        </HBox>
+    </top>
+
+    <left>
+        <ScrollPane hbarPolicy="NEVER" vbarPolicy="NEVER">
+            <VBox prefWidth="200" fx:id="navArea">
+                <Button text="供商管理" onAction="#loadVendorView" prefWidth="200" alignment="CENTER_LEFT" styleClass="navButton">
+                    <graphic>
+                        <FontIcon fill="white" iconLiteral="fab-confluence"/>
+                    </graphic>
+                </Button>
+                <Button text="客户管理" onAction="#loadClientView" prefWidth="200" alignment="CENTER_LEFT" styleClass="navButton">
+                    <graphic>
+                        <FontIcon fill="white" iconLiteral="fas-users-cog"/>
+                    </graphic>
+                </Button>
+                <Button text="汽车类型管理" onAction="#loadCarTypeView" prefWidth="200" alignment="CENTER_LEFT" styleClass="navButton">
+                    <graphic>
+                        <FontIcon fill="white" iconLiteral="fas-car-side"/>
+                    </graphic>
+                </Button>
+                <Button text="商品管理" onAction="#loadProductView" prefWidth="200" alignment="CENTER_LEFT" styleClass="navButton">
+                    <graphic>
+                        <FontIcon fill="white" iconLiteral="fas-car"/>
+                    </graphic>
+                </Button>
+                <Button text="进货管理" onAction="#loadPurchaseView" prefWidth="200" alignment="CENTER_LEFT" styleClass="navButton">
+                    <graphic>
+                        <FontIcon fill="white" iconLiteral="fab-artstation"/>
+                    </graphic>
+                </Button>
+                <Button text="销售管理" onAction="#loadSaleView" prefWidth="200" alignment="CENTER_LEFT" styleClass="navButton">
+                    <graphic>
+                        <FontIcon fill="white" iconLiteral="fas-donate"/>
+                    </graphic>
+                </Button>
+                <Button text="库存统计" onAction="#loadInventoryView" prefWidth="200" alignment="CENTER_LEFT" styleClass="navButton">
+                    <graphic>
+                        <FontIcon fill="white" iconLiteral="fas-warehouse"/>
+                    </graphic>
+                </Button>
+                <Button text="报表统计" onAction="#loadReportView" prefWidth="200" alignment="CENTER_LEFT" styleClass="navButton">
+                    <graphic>
+                        <FontIcon fill="white" iconLiteral="fas-chart-pie"/>
+                    </graphic>
+                </Button>
+                <Button text="员工管理" onAction="#loadEmpView" prefWidth="200" alignment="CENTER_LEFT" styleClass="navButton">
+                    <graphic>
+                        <FontIcon fill="white" iconLiteral="fas-user-alt"/>
+                    </graphic>
+                </Button>
+            </VBox>
+        </ScrollPane>
+    </left>
+    <center>
+        <VBox style="" fx:id="contentArea">
+            <Label text="Content Area" style="-fx-font-size: 20; -fx-alignment: center;" />
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cn.xzlei.luxurycarjavafx.controller.OperationPurchaseController">
+    <content>
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 10;">
+            <!-- 设置列约束 -->
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" />
+                <ColumnConstraints prefWidth="150" />
+                <ColumnConstraints halignment="RIGHT" />
+                <ColumnConstraints prefWidth="150" />
+            </columnConstraints>
+
+            <!-- 第一行 -->
+            <Label text="商品编号:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="productIdComboBox" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="请选择商品编号"/>
+
+            <Label text="是否进货:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="isPurchaseComboBox" GridPane.columnIndex="3" GridPane.rowIndex="0" promptText="请选择是否进货">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="是" />
+                        <String fx:value="否" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <!-- 第二行 -->
+            <Label text="订货数量:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="orderQuantityField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="付款方式:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <ComboBox fx:id="payMethodComboBox" GridPane.columnIndex="3" GridPane.rowIndex="1" promptText="请选择付款方式">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="现金" />
+                        <String fx:value="刷卡" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <!-- 第三行 -->
+            <Label text="供应商ID:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <ComboBox fx:id="supplierIdComboBox" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="请选择供应商ID"/>
+
+            <!-- 第四行 - 订货日期和时间在同一行 -->
+            <Label text="订货日期:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="3">
+                <DatePicker fx:id="orderDatePicker"/>
+                <TextField fx:id="timeField" promptText="HH:mm:ss" prefWidth="100"/>
+            </HBox>
+
+            <!-- 备注行 -->
+            <Label text="备注:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <TextArea fx:id="noteField" GridPane.columnIndex="1" GridPane.rowIndex="4"
+                      GridPane.columnSpan="3" prefRowCount="3"/>
+        </GridPane>
+    </content>
+</DialogPane>
